@@ -13,6 +13,7 @@ class QuestionAdmin(admin.ModelAdmin):
         (None, {'fields': ['question_text']}),
     ]
     inlines = [ChoiceInline]
+    search_fields = ['question_text']
 
 
 class ChoiceAdmin(admin.ModelAdmin):
@@ -24,6 +25,7 @@ class ChoiceAdmin(admin.ModelAdmin):
     list_display = ('question', 'choice_text', 'correct_answer')
     # Remove if the filtering of answers is deemed unnecessary.
     list_filter = ['correct_answer']
+    search_fields = ['choice_text']
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice, ChoiceAdmin)
