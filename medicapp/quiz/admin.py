@@ -22,7 +22,8 @@ class ChoiceAdmin(admin.ModelAdmin):
     ]
 
     list_display = ('question', 'choice_text', 'correct_answer')
-
+    # Remove if the filtering of answers is deemed unnecessary.
+    list_filter = ['correct_answer']
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice, ChoiceAdmin)
