@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 
-from .models import Question
+from .models import Question, Choice
 
 
 def index(request):
@@ -16,4 +16,14 @@ def index(request):
 
 
 def detail(request, question_id):
-    return HttpResponse("This is Question %s." % question_id)
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'quiz/detail.html', {'question': question})
+
+
+def answer(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    selected_choice = question.choice_set.get(pk=request.POST['choice'])
+    return render(request, 'quiz/answer.html', {
+        'question': question,
+        'choice': selected_choice,
+    })

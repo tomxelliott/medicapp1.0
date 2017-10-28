@@ -1,6 +1,7 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'x-1a=f#00b&jlo@@h=81&vusv(f!jwjz_!k*jlqz+3fpjy)p++'

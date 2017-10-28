@@ -1,0 +1,14 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="../../static/quiz/Care-Medical-Logo.jpg" style="width:10%;height: auto;" height="30" alt="">
+  </a>
+</nav>
+<h1>{{question.question_text}}</h1>
+<form action="{% url 'quiz:answer' question.id %}" method="post">
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+       <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}" />
+        <label for="choice{{forloop.counter}}">{{ choice.choice_text }}</label><br />
+    {% endfor %}
+<input type="submit" value="Submit" />
+</form>
