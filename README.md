@@ -8,11 +8,22 @@ A Django web application designed to help medical students across the globe prep
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Installing
+### Installation
 #### Prerequisites
 This project has only been tested on macOS High Sierra and Ubuntu 16.04 operating systems so with that in mind please be aware that the project may not run as intended on any other operating system. 
 
 All of the commands used to run this project are carried out on a _bash_ shell. 
+
+To set up the virtual environment I used [virtualenv](https://virtualenv.pypa.io) and installed it just outside of the repository for this project.  To initiate the virtual environment from inside your git repo, run the following command:
+
+```
+source ../env/bin/activate
+```
+Once you run this command, your _bash_ prompt should look similar to this:
+
+```
+(envmedicapp) Your-Macbook-Pro:medicapp yourname$
+```
 
 You will find all requirements for this project in [requirements.txt](medicapp/requirements.txt) and once you have set up and initiated your virtual environment, you can run the following command to install all of the requirements for this project:
 
