@@ -8,14 +8,14 @@
 </nav>
 <div id="container">
 <h1>Questions</h1>
-{% if topic_list %}
+{% if question_list %}
     <ul>
-    {% for topic in topic_list %}
-        <li type="square"><a href="{% url 'quiz:question' topic.id %}">{{ topic.topic_text }}</a></li>
+    {% for question in question_list %}
+        <li type="square"><a href="{% url 'quiz:detail' question.id %}">{{ question.question_text }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No Topics are available.</p>
+    <p>No Questions are available.</p>
 {% endif %}
 </div>
 <footer>&copy; tomxelliott</footer>

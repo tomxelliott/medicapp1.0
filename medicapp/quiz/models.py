@@ -1,7 +1,15 @@
 from django.db import models
 
 
+class Topic(models.Model):
+    topic_text = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.topic_text
+
+
 class Question(models.Model):
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     question_text = models.CharField(max_length=400)
 
     def __str__(self):

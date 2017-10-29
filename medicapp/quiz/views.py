@@ -2,16 +2,25 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 
-from .models import Question, Choice
+from .models import Topic, Question, Choice
 
 
 def index(request):
-    question_list = Question.objects.order_by('question_text')
+    topic_list = Topic.objects.order_by('topic_text')
     template = loader.get_template('quiz/index.html')
+    context = {
+        'topic_list': topic_list,
+    }
+
+    return HttpResponse(template.render(context, request))
+
+
+def question(request, topic_id):
+    question_list = Question.objects.filter(topic=topic_id).order_by('question_text')
+    template = loader.get_template('quiz/question.html')
     context = {
         'question_list': question_list,
     }
-
     return HttpResponse(template.render(context, request))
 
 

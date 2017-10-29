@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Question, Choice
+from .models import Topic, Question, Choice
 
 
 class ChoiceInline(admin.StackedInline):
@@ -8,9 +8,17 @@ class ChoiceInline(admin.StackedInline):
     max_num = 4
 
 
+class TopicAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['topic_text']}),
+    ]
+    search_fields = ['topic_text']
+
+
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['question_text']}),
+        (None,      {'fields': ['question_text']}),
+        ('TOPIC',   {'fields': ['topic']}),
     ]
     inlines = [ChoiceInline]
     search_fields = ['question_text']
@@ -27,5 +35,6 @@ class ChoiceAdmin(admin.ModelAdmin):
     list_filter = ['correct_answer']
     search_fields = ['choice_text']
 
+admin.site.register(Topic, TopicAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice, ChoiceAdmin)
