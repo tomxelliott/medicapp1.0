@@ -19,7 +19,7 @@ To set up the virtual environment I used [virtualenv](https://virtualenv.pypa.io
 ```
 source ../env/bin/activate
 ```
-Once you run this command, your _bash_ prompt should look similar to this:
+Once you have run this command, your _bash_ prompt should look similar to this:
 
 ```
 (envmedicapp) Your-Macbook-Pro:medicapp yourname$
@@ -46,7 +46,7 @@ Automated tests are currently being generated for this project.
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+This application has been deployed on Amazon Web Services using Elastic Beanstalk, however there are other options out there including Heroku which I also hold in very high regard.
 
 ## Built With
 
