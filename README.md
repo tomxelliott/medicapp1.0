@@ -6,7 +6,12 @@ A Django web application designed to help medical students across the globe prep
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+
+### Installing
+#### Prerequisites
+This project has only been tested on macOS High Sierra and Ubuntu 16.04 operating systems so with that in mind please be aware that the project may not run as intended on any other operating system. 
+
+All of the commands used to run this project are carried out on a _bash_ shell. 
 
 You will find all requirements for this project in [requirements.txt](medicapp/requirements.txt) and once you have set up and initiated your virtual environment, you can run the command below to install all of the requirements for this project.
 
@@ -14,23 +19,14 @@ You will find all requirements for this project in [requirements.txt](medicapp/r
 pip install -r requirements.txt
 ```
 
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+#### Test Server
+Once you have set up all of the prerequisites and have your virtual environment initiated, ensure that you are in the directory that contains the file [manage.py](medicapp/manage.py) and run the following command to start running the test server on your local machine:
 
 ```
-Give the example
+python manage.py runserver
 ```
 
-And repeat
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
