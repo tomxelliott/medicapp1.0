@@ -8,10 +8,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+You will find all requirements for this project in [requirements.txt](medicapp/requirements.txt) and once you have set up and initiated your virtual environment, you can run the command below to install all of the requirements for this project.
 
 ```
-Give examples
+pip install -r requirements.txt
 ```
 
 ### Installing
@@ -34,7 +34,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+Automated tests are currently being generated for this project.
 
 ### Break down into end to end tests
 
@@ -58,9 +58,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Django 1.11](https://www.djangoproject.com/) - Web Framework used
 
 ## Contributing
 
