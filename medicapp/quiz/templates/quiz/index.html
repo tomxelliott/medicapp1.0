@@ -1,18 +1,22 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
+<body>
 <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="{% url 'quiz:index' %}">
     <img src="../../static/quiz/Care-Medical-Logo.jpg" style="width:10%;height: auto;" height="30" alt="">
   </a>
 </nav>
-<div>
+<div id="container">
+<h1>Questions</h1>
 {% if question_list %}
     <ul>
     {% for question in question_list %}
-        <li><a href="{% url 'quiz:detail' question.id %}">{{ question.question_text }}</a></li>
+        <li type="square"><a href="{% url 'quiz:detail' question.id %}">{{ question.question_text }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
 </div>
+<footer>&copy; tomxelliott</footer>
+</body>
