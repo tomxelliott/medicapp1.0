@@ -46,7 +46,7 @@ Automated tests are currently being generated for this project.
 
 ## Deployment
 
-This application has been deployed on Amazon Web Services using Elastic Beanstalk, however there are other options out there including Heroku which I also hold in very high regard.
+This application has been deployed on [Amazon Web Services](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html) using Elastic Beanstalk, however there are other options out there including [Heroku](https://www.heroku.com/) which I also hold in very high regard.
 
 ## Built With
 
