@@ -14,7 +14,7 @@ This project has only been tested on macOS High Sierra and Ubuntu 16.04 operatin
 
 All of the commands used to run this project are carried out on a _bash_ shell. 
 
-You will find all requirements for this project in [requirements.txt](medicapp/requirements.txt) and once you have set up and initiated your virtual environment, you can run the command below to install all of the requirements for this project.
+You will find all requirements for this project in [requirements.txt](medicapp/requirements.txt) and once you have set up and initiated your virtual environment, you can run the following command to install all of the requirements for this project:
 
 ```
 pip install -r requirements.txt
@@ -26,28 +26,12 @@ Once you have set up all of the prerequisites and have your virtual environment 
 ```
 python manage.py runserver
 ```
-
-
+By default, the server will set up on [http://localhost:8000/](http://localhost:8000/). Ensure that you append the name of the app to this _url_ to access the web application. To land on the home page you should enter the link in your browser as [http://localhost:8000/quiz](http://localhost:8000/quiz) and you can start playing around with the application and reviewing any changes you make in your fork.
 
 ## Running the tests
 
 Automated tests are currently being generated for this project.
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
@@ -55,7 +39,10 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
+* [Python 2.7](https://www.python.org/) - Python 2
 * [Django 1.11](https://www.djangoproject.com/) - Web Framework used
+* [Bootstrap](http://getbootstrap.com/) - Bootstrap provided some front end glue to the project.
+
 
 ## Contributing
 
@@ -64,8 +51,6 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
----
 
 ## Authors
 
