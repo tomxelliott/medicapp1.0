@@ -35,6 +35,7 @@ class ChoiceAdmin(admin.ModelAdmin):
     list_filter = ['correct_answer']
     search_fields = ['choice_text']
 
+
 admin.site.register(Topic, TopicAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice, ChoiceAdmin)
