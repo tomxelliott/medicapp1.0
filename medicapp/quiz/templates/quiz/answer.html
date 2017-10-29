@@ -12,10 +12,10 @@
 <div>
     Correct!
 </div>
-<form action="{% url 'quiz:answer' question.id %}" method="post">
+<form action="{% url 'quiz:index' %}" method="post">
     {% csrf_token %}
     <div>
-    <input type="submit" value="Next Question" onclick="return validateForm()" />
+    <input type="submit" value="Next Question" />
     </div>
 </form>
 {% else %}
