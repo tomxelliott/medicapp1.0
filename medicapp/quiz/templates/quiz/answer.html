@@ -1,14 +1,34 @@
-<div id="container">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
+
+<div id="container" style="text-align: center">
 <h1>{{ question.question_text }}</h1>
 <h2>{{ selected_choice.choice_text}}</h2>
 
 {% if choice.correct_answer %}
 <div>
+    <h2>{{ choice.choice_text }}</h2>
+</div>
+<div>
     Correct!
 </div>
+<form action="{% url 'quiz:answer' question.id %}" method="post">
+    {% csrf_token %}
+    <div>
+    <input type="submit" value="Next Question" onclick="return validateForm()" />
+    </div>
+</form>
 {% else %}
 <div>
     Incorrect :(
 </div>
+<div>
+    <button id="backbutton" onclick="goBack()">Go Back</button>
+</div>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 {% endif %}
 </div>
