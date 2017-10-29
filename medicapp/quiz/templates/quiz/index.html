@@ -1,11 +1,49 @@
 {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="{% static 'quiz/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      body {
+        padding-top: 54px;
+      }
+      @media (min-width: 992px) {
+        body {
+          padding-top: 56px;
+        }
+      }
+
+    </style>
 <link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
 <body>
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'quiz:index' %}">
-    <img src="../../static/quiz/Care-Medical-Logo.jpg" style="width:10%;height: auto;" height="30" alt="">
-  </a>
-</nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'quiz:index' %}">MedicApp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 <div id="container">
 <h1>Topics</h1>
 {% if topic_list %}
@@ -18,5 +56,5 @@
     <p>No Topics are available.</p>
 {% endif %}
 </div>
-<footer>&copy; tomxelliott</footer>
+<footer><a href="https://www.github.com/tomxelliott">&copy; tomxelliott</a></footer>
 </body>
