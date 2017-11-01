@@ -54,7 +54,7 @@
 <div>
     Correct!
 </div>
-<form action="{% url 'quiz:index' %}" method="post">
+<form action="{% url 'quiz:detail' next_question_id %}" method="post">
     {% csrf_token %}
     <div>
     <input type="submit" value="Next Question" />

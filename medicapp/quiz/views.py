@@ -32,7 +32,10 @@ def detail(request, question_id):
 def answer(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     selected_choice = question.choice_set.get(pk=request.POST['choice'])
+    next_question_id = int(question_id) + 1
+    next_question_id = unicode(next_question_id)
     return render(request, 'quiz/answer.html', {
         'question': question,
         'choice': selected_choice,
+        'next_question_id': next_question_id,
     })

@@ -4,7 +4,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="{% static 'quiz/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
+    <script src="{% static 'quiz/notify.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
     <style>
       body {
         padding-top: 54px;
@@ -16,7 +17,6 @@
       }
 
     </style>
-<link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
 
 <script>
 function validateForm() {
@@ -26,10 +26,12 @@ function validateForm() {
             return true;
         }
     }
-    //document.getElementById('error-message').innerHTML = '<div id="notification"><span data-notify-text/></div>';
-    //jQuery.notify.defaults({globalPosition:"bottom right", autoHide: true, autoHideDelay: 1000});
-    //jQuery.notify("Enter a valid Status type", "error");
+    document.getElementById('statusTypeErrorMessage').innerHTML = '<div class="alert alert-danger" style="text-align:center; margin-top: 10px !important; margin-bottom: 1px !important;"><p>Choose a valid Status type!</p></div>';
+        setTimeout(function(){
+            document.getElementById("statusTypeErrorMessage").innerHTML="";
+        },3000);
     return false;
+
 }
 </script>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -69,5 +71,6 @@ function validateForm() {
 <input type="submit" value="Submit" onclick="return validateForm()" />
     <div class="error-message"></div>
 </form>
+<div id="statusTypeErrorMessage" ></div>
 </div>
 <footer><a href="https://www.github.com/tomxelliott">&copy; tomxelliott</a></footer>
