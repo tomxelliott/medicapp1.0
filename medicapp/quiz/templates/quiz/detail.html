@@ -26,7 +26,7 @@ function validateForm() {
             return true;
         }
     }
-    document.getElementById('statusTypeErrorMessage').innerHTML = '<div class="alert alert-danger" style="text-align:center; margin-top: 10px !important; margin-bottom: 1px !important;"><p>Choose a valid Status type!</p></div>';
+    document.getElementById('statusTypeErrorMessage').innerHTML = '<div class="alert alert-danger" style="text-align:center; margin-top: 10px !important; margin-bottom: 1px !important;"><p>Choose your Answer!</p></div>';
         setTimeout(function(){
             document.getElementById("statusTypeErrorMessage").innerHTML="";
         },3000);
@@ -42,20 +42,20 @@ function validateForm() {
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="">account</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link js-scroll-trigger" href="">blog</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
+              <a class="nav-link js-scroll-trigger" href="">contact</a>
             </li>
+            <div class="dropdown">
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link js-scroll-trigger" href=""><img id="user-img" src=""></a>
             </li>
+            </div>
           </ul>
         </div>
       </div>

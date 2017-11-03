@@ -25,20 +25,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="">account</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link js-scroll-trigger" href="">blog</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
+              <a class="nav-link js-scroll-trigger" href="">contact</a>
             </li>
+            <div class="dropdown">
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link js-scroll-trigger" href=""><img id="user-img" src=""></a>
             </li>
+            </div>
           </ul>
         </div>
       </div>
@@ -54,11 +54,21 @@
 <div>
     Correct!
 </div>
+{% if next_question_id %}
 <form action="{% url 'quiz:detail' next_question_id %}" method="post">
     {% csrf_token %}
     <div>
     <input type="submit" value="Next Question" />
     </div>
+</form>
+{% else %}
+<form action="{% url 'quiz:out_of_questions' %}" method="post">
+    {% csrf_token %}
+    <div>
+    <input type="submit" value="Next Question" />
+    </div>
+</form>
+{% endif %}
 </form>
 {% else %}
 <div>
