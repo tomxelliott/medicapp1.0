@@ -9,4 +9,4 @@ env:
 script:
  - cd medicapp; python manage.py test
 after_success:
- - python manage.py test --with-coverage --cover-package=core
+ - python manage.py test --with-coverage --cover-package=quiz
