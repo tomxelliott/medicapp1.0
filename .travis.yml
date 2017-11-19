@@ -7,6 +7,6 @@ install:
 env:
 - DJANGO_VERSION=1.11.6
 script:
-# - py.test
+ - cd medicapp; python manage.py test
 after_success:
- - cd medicapp; python manage.py runserver
+ - python manage.py runserver
