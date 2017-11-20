@@ -1,6 +1,6 @@
 # MedicApp
 
-https://travis-ci.org/tomxelliott/medicapp1.0.svg?branch=master
+[logo]: https://travis-ci.org/tomxelliott/medicapp1.0.svg?branch=master
 
 A Django web application designed to help medical students across the globe prepare for their exams without the need to assemble hundreds of pages of notes and flash cards.
 
