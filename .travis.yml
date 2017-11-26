@@ -7,8 +7,6 @@ install:
 env:
 - DJANGO_VERSION=1.11.6
 script:
- - cd medicapp; python manage.py test
-after_success:
  - python manage.py test --with-coverage --cover-package=quiz
 notifications:
  slack:
