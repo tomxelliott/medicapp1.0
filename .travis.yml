@@ -10,3 +10,6 @@ script:
  - cd medicapp; python manage.py test
 after_success:
  - python manage.py test --with-coverage --cover-package=quiz
+notifications:
+ slack:
+  on_success: change
