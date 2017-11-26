@@ -13,3 +13,4 @@ after_success:
 notifications:
  slack:
   on_success: change
+  on_failure: always
