@@ -1,1 +1,1 @@
-web: gunicorn medicapp:quiz
+web: gunicorn medicapp:medicapp:quiz
