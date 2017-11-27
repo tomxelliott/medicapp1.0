@@ -1,1 +1,1 @@
-web: gunicorn medicapp.wsgi --log-file -
+web: web: gunicorn medicapp:quiz
