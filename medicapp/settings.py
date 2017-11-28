@@ -21,7 +21,6 @@ INSTALLED_APPS = (
     # 'django.contrib.sites',
     'django.contrib.staticfiles',
     'django_nose',
-    'quiz',
 )
 
 MIDDLEWARE_CLASSES = (
