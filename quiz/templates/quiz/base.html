@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="{% static 'quiz/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- MedicApp Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
+    <!-- Emoji styles... -->
+    <link rel="stylesheet" href="{% static 'quiz/twemoji-awesome.css' %}">
     <style>
       body {
         padding-top: 54px;
@@ -16,14 +19,11 @@
           padding-top: 56px;
         }
       }
-
     </style>
-    <!-- MedicApp Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
-    <!-- Emoji styles... -->
-    <link rel="stylesheet" href="{% static '/css/twemoji-awesome.css' %}">
     <title>
-      MedicApp - {% block title %}{% endblock %}
+        {% block title %}
+            MedicApp
+        {% endblock %}
     </title>
 </head>
 <body>
@@ -53,8 +53,12 @@
         </div>
       </div>
     </nav>
-<div id="container">
-
-</div>
+    <main role="main" class="container">
+      {% block content %}
+      {% endblock %}
+    </main>
+<footer>
+    <a href="https://www.github.com/tomxelliott">&copy; tomxelliott</a>
+</footer>
 </body>
 </html>

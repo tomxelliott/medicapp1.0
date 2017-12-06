@@ -1,26 +1,5 @@
-{% load static %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="{% static 'quiz/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <script src="{% static 'quiz/notify.min.js' %}"></script>
-    <!-- MedicApp Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
-    <!-- Emoji styles... -->
-    <link rel="stylesheet" href="{% static '/css/twemoji-awesome.css' %}">
-    <style>
-      body {
-        padding-top: 54px;
-      }
-      @media (min-width: 992px) {
-        body {
-          padding-top: 56px;
-        }
-      }
-
-    </style>
-
+{% extends 'quiz/base.html' %}
+{% block content %}
 <script>
 function validateForm() {
     var check = document.getElementsByTagName('input');
@@ -37,14 +16,7 @@ function validateForm() {
 
 }
 </script>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="{% url 'quiz:index' %}">MedicApp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </nav>
+
 <div id="container">
 <h1>{{question.question_text}}</h1>
 <form action="{% url 'quiz:answer' question.id %}" method="post">
@@ -58,4 +30,4 @@ function validateForm() {
 </form>
 <div id="statusTypeErrorMessage" ></div>
 </div>
-<footer><a href="https://www.github.com/tomxelliott">&copy; tomxelliott</a></footer>
+{% endblock %}

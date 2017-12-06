@@ -1,33 +1,5 @@
-{% load static %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="{% static 'quiz/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <style>
-      body {
-        padding-top: 54px;
-      }
-      @media (min-width: 992px) {
-        body {
-          padding-top: 56px;
-        }
-      }
-
-    </style>
-    <!-- MedicApp Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
-    <!-- Emoji styles... -->
-    <link rel="stylesheet" href="{% static '/css/twemoji-awesome.css' %}">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="{% url 'quiz:index' %}">MedicApp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </nav>
+{% extends 'quiz/base.html' %}
+{% block content %}
 <div id="container" style="text-align: center">
 <h1>{{ question.question_text }}</h1>
 <h2>{{ selected_choice.choice_text}}</h2>
@@ -69,4 +41,4 @@ function goBack() {
 </script>
 {% endif %}
 </div>
-<footer><a href="https://www.github.com/tomxelliott">&copy; tomxelliott</a></footer>
+{% endblock %}
