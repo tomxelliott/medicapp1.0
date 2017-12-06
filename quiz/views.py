@@ -1,8 +1,20 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.template import loader
+from django.template import loader, RequestContext
+from django.contrib.auth.models import User
+from models import UserProfile
+from forms import UserForm, UserProfileForm
+from django.http import HttpResponse
+from django.shortcuts import render_to_response
 
-from .models import Topic, Question, Choice
+from .models import Topic, Question, Choice, User
+
+
+def login_page(request):
+    template = loader.get_template('quiz/login.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
 
 
 def index(request):
@@ -22,6 +34,7 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
+@login_required
 def question(request, topic_id):
     """
     This function fetches all of the questions for a given topic selected by the user.
@@ -38,6 +51,7 @@ def question(request, topic_id):
     }
 
     return HttpResponse(template.render(context, request))
+
 
 
 def detail(request, question_id):
@@ -74,3 +88,28 @@ def out_of_questions(request):
     }
 
     return HttpResponse(template.render(context, request))
+
+def register(request):
+    context = RequestContext(request)
+    print context
+    registered = False
+    if request.method == 'POST':
+        u_f = UserForm(data=request.POST)
+        p_f = UserProfileForm(data=request.POST)
+        if u_f.is_valid() and p_f.is_valid():
+            user = u_f.save()
+            pw = user.password
+            user.set_password(pw)
+            user.save()
+            profile = p_f.save(commit=False)
+            profile.user = user
+            profile.save()
+            registered = True
+        else:
+            print u_f.errors, p_f.errors
+    else:
+        u_f = UserForm()
+        p_f = UserProfileForm()
+
+    return render_to_response('quiz/register.html', {'u_f': u_f, 'p_f': p_f, 'registered': registered},
+                              context)

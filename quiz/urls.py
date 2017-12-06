@@ -9,4 +9,7 @@ urlpatterns = [
     url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
     url(r'^(?P<question_id>[0-9]+)/answer/$', views.answer, name='answer'),
     url(r'^out_of_questions/$', views.out_of_questions, name='out_of_questions'),
+    url(r'^login/$', views.login_page, name='login'),
+    url(r'^register/$', views.register, name='register'),
+
 ]

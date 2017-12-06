@@ -1,11 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
-class User(models.Model):
-    name = models.CharField(max_length=30)
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
     age = models.IntegerField()
-    email = models.CharField(max_length=50)
     total_score = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        return self.user.username
 
 
 class Topic(models.Model):
@@ -24,6 +27,7 @@ class Question(models.Model):
 
     def get_topic(self):
         return str(self.topic)
+
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)

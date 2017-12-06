@@ -1,0 +1,18 @@
+{% extends 'quiz/base.html' %}
+{% block content %}
+{% if registered %}
+<div id="container">
+    <a href="/rango/">Rango</a> says: thank you for registering.
+</div>
+{% else %}
+<div id="container">
+    <h1>MedicApp says: register here!</h1>
+    <form id="user_form" method="post" action="/quiz/register/" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ u_f.as_p }}
+        {{ p_f.as_p }}
+        <input type="submit" name="submit" value="submit" />
+    </form>
+</div>
+{% endif %}
+{% endblock %}
