@@ -48,7 +48,11 @@ Automated tests are currently being generated for this project.
 
 ## Deployment
 
-This application has been deployed on Amazon Web Services using Elastic Beanstalk, however there are other options out there including Heroku which I also hold in very high regard.
+This application has been deployed on Amazon Web Services using Elastic Beanstalk as well as Heroku, however there are other options out there including Heroku which I also hold in very high regard. Scripts have been setup to enable automatic deployment to Heroku, however the structure of the project needs to be tweaked slightly before the applciation can run seamlessly on Heroku... watch this space.
+
+## Continuous integration
+
+At this moment in time, a very basic Travis CI pipeline has been implemented which can be found in *travis.yml*. This is set up to alert you when there is a change in the status of the build.
 
 ## Built With
 
