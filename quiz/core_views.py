@@ -1,20 +1,17 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, get_user_model, logout
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.http import HttpResponse, Http404, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404
 from django.template import loader, RequestContext
 from django.template.context_processors import csrf
-from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 from forms import UserForm, UserProfileForm
 from django.shortcuts import render_to_response
 
-from .models import Topic, Question, Choice, User
-from .models import UserProfile
 
-
+@ensure_csrf_cookie
 def user_login(request):
     context = RequestContext(request)
     if request.method == 'POST':
@@ -31,7 +28,6 @@ def user_login(request):
             print  "invalid login details " + username + " " + password
             return render_to_response('quiz/login.html', {}, context)
     else:
-        # the login is a GET request, so just show the user the login form.
         return render_to_response('quiz/login.html', {}, context)
 
 
@@ -42,29 +38,25 @@ def user_logout(request):
     return HttpResponseRedirect('quiz/index.html')
 
 
+@ensure_csrf_cookie
 def register(request):
     context = RequestContext(request)
     print context
     registered = False
     if request.method == 'POST':
         u_f = UserForm(data=request.POST)
-        p_f = UserProfileForm(data=request.POST)
-        if u_f.is_valid() and p_f.is_valid():
+        if u_f.is_valid():
             user = u_f.save()
             pw = user.password
             user.set_password(pw)
             user.save()
-            profile = p_f.save(commit=False)
-            profile.user = user
-            profile.save()
             registered = True
         else:
-            print u_f.errors, p_f.errors
+            print u_f.errors
     else:
         u_f = UserForm()
-        p_f = UserProfileForm()
 
-    return render_to_response('quiz/register.html', {'u_f': u_f, 'p_f': p_f, 'registered': registered},
+    return render_to_response('quiz/register.html', {'u_f': u_f, 'registered': registered},
                               context)
 
 

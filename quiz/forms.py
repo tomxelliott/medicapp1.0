@@ -30,8 +30,3 @@ class UserProfileForm(forms.Form):
                 super(UserProfileForm, self).__init__(*args, **kwargs)
                 self.fields["age"] = forms.IntegerField(min_value=1, max_value=120)
                 self.initial["email"] = 0
-
-
-# class LoginForm(forms.Form):
-#         userid = forms.CharField(max_length=100)
-#         password = forms.CharField(widget=PasswordInput())
