@@ -3,12 +3,12 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader, RequestContext
 from django.contrib.auth.models import User
-from models import UserProfile
-from forms import UserForm, UserProfileForm
+from quiz.models import UserProfile
+from quiz.forms import UserForm, UserProfileForm
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 
-from .models import Topic, Question, Choice, User
+from quiz.models import Topic, Question, Choice, User
 
 
 def index(request):

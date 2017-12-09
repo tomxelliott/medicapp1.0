@@ -38,6 +38,9 @@
             <li class="nav-item">
             {% if user.is_authenticated %}
               <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{%url 'quiz:profile' user.id %}">profile</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="{% url 'quiz:logout' %}">logout</a>
               </li>
             {% else %}
@@ -50,7 +53,7 @@
             {% endif %}
             </li>
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="">faq</a>
+                <a class="nav-link js-scroll-trigger" href="/quiz/faq.html">faq</a>
             </li>
             <div class="dropdown">
             <li class="nav-item">

@@ -7,7 +7,8 @@ from django.template import loader, RequestContext
 from django.template.context_processors import csrf
 from django.views.decorators.csrf import ensure_csrf_cookie
 
-from forms import UserForm, UserProfileForm
+from quiz.models import UserProfile
+from quiz.forms import UserForm, UserProfileForm
 from django.shortcuts import render_to_response
 
 
@@ -21,21 +22,27 @@ def user_login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect("quiz/index.html")
+                return HttpResponseRedirect("/quiz/")
             else:
                 return HttpResponse("You're account is disabled.")
         else:
-            print  "invalid login details " + username + " " + password
+            print "invalid login details " + username + " " + password
             return render_to_response('quiz/login.html', {}, context)
     else:
         return render_to_response('quiz/login.html', {}, context)
+
+
+@ensure_csrf_cookie
+def user_profile(request, user_id):
+    context = RequestContext(request)
+    return render_to_response('quiz/profile.html', {}, context)
 
 
 @login_required
 def user_logout(request):
     context = RequestContext(request)
     logout(request)
-    return HttpResponseRedirect('quiz/index.html')
+    return HttpResponseRedirect('/quiz/')
 
 
 @ensure_csrf_cookie
@@ -63,7 +70,6 @@ def register(request):
 def permission_denied(request):
     user = request.user
     template = loader.get_template('quiz/permission_denied.html')
-
     context = {}
     context.update(csrf(request))
     return HttpResponseForbidden(template.render(context))

@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
+from quiz.views import quiz_views
 from . import core_views
-from . import quiz_views
 
 app_name = 'quiz'
 urlpatterns = [
@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^login/$', core_views.user_login, name='login'),
     url(r'^logout/$', core_views.user_logout, name='logout'),
     url(r'^register/$', core_views.register, name='register'),
+    url(r'^profile/(?P<user_id>[0-9]+)/$', core_views.user_profile, name='profile'),
     url(r'^permission_denied/$', core_views.permission_denied, name='permission_denied'),
 ]

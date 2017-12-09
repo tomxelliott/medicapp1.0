@@ -26,7 +26,7 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+#    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -47,7 +47,7 @@ ROOT_URLCONF = 'medicapp.urls'
 
 LOGIN_URL = '/quiz/login'
 LOGIN_REDIRECT_URL = '/quiz/login'
-CSRF_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
 
 TEMPLATES = [
     {
