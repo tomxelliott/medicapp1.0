@@ -11,6 +11,10 @@
                 Password:
                 <input type="password" name="password" value="" id="password" size="50" />
                 <br />
+            {% if error_msg %}
+                {{error_msg}}
+                <br>
+            {% endif %}
         <input type="submit" name="submit" value="submit" />
         </form>
         <br>

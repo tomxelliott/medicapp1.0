@@ -1,15 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse
-from django.http import HttpResponse, Http404, HttpResponseRedirect, HttpResponseForbidden
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
 from django.template.context_processors import csrf
 from django.views.decorators.csrf import ensure_csrf_cookie
 
-from quiz.models import UserProfile
-from quiz.forms import UserForm, UserProfileForm
-from django.shortcuts import render_to_response
+from quiz.forms import UserForm
 
 
 @ensure_csrf_cookie
@@ -26,16 +23,17 @@ def user_login(request):
             else:
                 return HttpResponse("You're account is disabled.")
         else:
-            print "invalid login details " + username + " " + password
-            return render_to_response('quiz/login.html', {}, context)
+            error_msg = "invalid login details " + username + " " + password
+            return render_to_response('quiz/login.html', {'error_msg': error_msg}, context)
     else:
         return render_to_response('quiz/login.html', {}, context)
 
 
 @ensure_csrf_cookie
 def user_profile(request, user_id):
-    context = RequestContext(request)
-    return render_to_response('quiz/profile.html', {}, context)
+    template = loader.get_template('quiz/profile.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
 
 
 @login_required
