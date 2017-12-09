@@ -32,6 +32,6 @@ class UserProfileForm(forms.Form):
                 self.initial["email"] = 0
 
 
-class LoginForm(forms.Form):
-        userid = forms.CharField(max_length=100)
-        password = forms.CharField(widget=PasswordInput())
+# class LoginForm(forms.Form):
+#         userid = forms.CharField(max_length=100)
+#         password = forms.CharField(widget=PasswordInput())

@@ -36,14 +36,18 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                {% if user %}
-                <a class="nav-link js-scroll-trigger" href="{% url 'quiz:register' %}">account</a>
-                {% else %}
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{% url 'quiz:logout' %}">logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="{% url 'quiz:register' %}">sign up</a>
-                {% endif %}
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="">blog</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="{% url 'quiz:login' %}">login</a>
+              </li>
+            {% endif %}
             </li>
             <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="">faq</a>

@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^(?P<question_id>[0-9]+)/$', quiz_views.detail, name='detail'),
     url(r'^(?P<question_id>[0-9]+)/answer/$', quiz_views.answer, name='answer'),
     url(r'^out_of_questions/$', quiz_views.out_of_questions, name='out_of_questions'),
-    url(r'^login/$', core_views.login_page, name='login'),
+    url(r'^login/$', core_views.user_login, name='login'),
     url(r'^register/$', core_views.register, name='register'),
     url(r'^permission_denied/$', core_views.permission_denied, name='permission_denied'),
 ]

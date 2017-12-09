@@ -28,7 +28,7 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-@login_required(login_url='login_page')
+@login_required
 def question(request, topic_id):
     """
     This function fetches all of the questions for a given topic selected by the user.
@@ -47,14 +47,14 @@ def question(request, topic_id):
     return HttpResponse(template.render(context, request))
 
 
-@login_required(login_url='login_page')
+@login_required
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
 
     return render(request, 'quiz/detail.html', {'question': question})
 
 
-@login_required(login_url='login_page')
+@login_required
 def answer(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     selected_choice = question.choice_set.get(pk=request.POST['choice'])
@@ -74,7 +74,7 @@ def answer(request, question_id):
         })
 
 
-@login_required(login_url='login_page')
+@login_required
 def out_of_questions(request):
     topic_list = Topic.objects.order_by('topic_text')
     template = loader.get_template('quiz/out_of_questions.html')

@@ -45,8 +45,8 @@ PASSWORD_HASHERS = (
 
 ROOT_URLCONF = 'medicapp.urls'
 
-LOGIN_URL='quiz/login'
-LOGIN_REDIRECT_URL='/quiz/login'
+LOGIN_URL = '/quiz/login'
+LOGIN_REDIRECT_URL = '/quiz/login'
 
 
 TEMPLATES = [

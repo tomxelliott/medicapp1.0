@@ -1,50 +1,45 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404, HttpResponseRedirect, HttpResponseForbidden
-from django.template import loader, RequestContext
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, get_user_model, logout
+from django.http import HttpResponse
+from django.http import HttpResponse, Http404, HttpResponseRedirect, HttpResponseForbidden
+from django.shortcuts import render, get_object_or_404
+from django.template import loader, RequestContext
 from django.template.context_processors import csrf
 from django.views.decorators.cache import never_cache
 
-from models import UserProfile
 from forms import UserForm, UserProfileForm
-from django.http import HttpResponse
 from django.shortcuts import render_to_response
 
-from .forms import LoginForm
-
 from .models import Topic, Question, Choice, User
+from .models import UserProfile
 
 
-@never_cache
-def login_page(request):
-    if request.user.is_authenticated():
-        return HttpResponseRedirect("home")
-
-    err_msg = ""
+def user_login(request):
+    context = RequestContext(request)
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            userid = form.cleaned_data['userid']
-            password = form.cleaned_data['password']
-            user = authenticate(username=userid, password=password)
-            template = loader.get_template('quiz/login.html')
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect("quiz/index.html")
+            else:
+                return HttpResponse("You're account is disabled.")
+        else:
+            print  "invalid login details " + username + " " + password
+            return render_to_response('quiz/login.html', {}, context)
     else:
-        form = LoginForm()
-    # return user to login page
-    return render_to_response('quiz/login.html', \
-                              {'form': form, 'err_msg': err_msg, }, \
-                              context_instance=RequestContext(request))
+        # the login is a GET request, so just show the user the login form.
+        return render_to_response('quiz/login.html', {}, context)
 
 
-@login_required(login_url='../login')
-def permission_denied(request):
-    user = request.user
-    template = loader.get_template('hr/permission_denied.html')
-
-    context = {}
-    context.update(csrf(request))
-    return HttpResponseForbidden(template.render(context))
+@login_required
+def user_logout(request):
+    context = RequestContext(request)
+    logout(request)
+    return HttpResponseRedirect('quiz/index.html')
 
 
 def register(request):
@@ -71,3 +66,12 @@ def register(request):
 
     return render_to_response('quiz/register.html', {'u_f': u_f, 'p_f': p_f, 'registered': registered},
                               context)
+
+
+def permission_denied(request):
+    user = request.user
+    template = loader.get_template('quiz/permission_denied.html')
+
+    context = {}
+    context.update(csrf(request))
+    return HttpResponseForbidden(template.render(context))
