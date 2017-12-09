@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from quiz.views import quiz_views
-from . import core_views
+from views import core_views
 
 app_name = 'quiz'
 urlpatterns = [
