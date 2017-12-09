@@ -73,3 +73,8 @@ def permission_denied(request):
     context = {}
     context.update(csrf(request))
     return HttpResponseForbidden(template.render(context))
+
+
+def csrf_failure(request, reason=""):
+    context = {'message': 'You shouldn\'t be here!'}
+    return render_to_response('/403.html', context)
