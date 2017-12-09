@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
 from . import views
+from . import core_views
 
 app_name = 'quiz'
 urlpatterns = [
@@ -11,5 +12,5 @@ urlpatterns = [
     url(r'^out_of_questions/$', views.out_of_questions, name='out_of_questions'),
     url(r'^login/$', views.login_page, name='login'),
     url(r'^register/$', views.register, name='register'),
-
+    url(r'^permission_denied/$', core_views.permission_denied, name='permission_denied'),
 ]
