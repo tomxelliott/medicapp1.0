@@ -17,7 +17,7 @@ from .models import Topic, Question, Choice, User
 
 
 @never_cache
-def login_vw(request):
+def login_page(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect("home")
 
@@ -28,11 +28,11 @@ def login_vw(request):
             userid = form.cleaned_data['userid']
             password = form.cleaned_data['password']
             user = authenticate(username=userid, password=password)
-            template = loader.get_template('hr/login.html')
+            template = loader.get_template('quiz/login.html')
     else:
         form = LoginForm()
     # return user to login page
-    return render_to_response('hr/login.html', \
+    return render_to_response('quiz/login.html', \
                               {'form': form, 'err_msg': err_msg, }, \
                               context_instance=RequestContext(request))
 
@@ -45,3 +45,29 @@ def permission_denied(request):
     context = {}
     context.update(csrf(request))
     return HttpResponseForbidden(template.render(context))
+
+
+def register(request):
+    context = RequestContext(request)
+    print context
+    registered = False
+    if request.method == 'POST':
+        u_f = UserForm(data=request.POST)
+        p_f = UserProfileForm(data=request.POST)
+        if u_f.is_valid() and p_f.is_valid():
+            user = u_f.save()
+            pw = user.password
+            user.set_password(pw)
+            user.save()
+            profile = p_f.save(commit=False)
+            profile.user = user
+            profile.save()
+            registered = True
+        else:
+            print u_f.errors, p_f.errors
+    else:
+        u_f = UserForm()
+        p_f = UserProfileForm()
+
+    return render_to_response('quiz/register.html', {'u_f': u_f, 'p_f': p_f, 'registered': registered},
+                              context)

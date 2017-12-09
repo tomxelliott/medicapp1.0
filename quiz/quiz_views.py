@@ -11,12 +11,6 @@ from django.shortcuts import render_to_response
 from .models import Topic, Question, Choice, User
 
 
-def login_page(request):
-    template = loader.get_template('quiz/login.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
-
-
 def index(request):
     """
     Generate the homepage view
@@ -34,7 +28,7 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-@login_required(login_url='login_vw')
+@login_required(login_url='login_page')
 def question(request, topic_id):
     """
     This function fetches all of the questions for a given topic selected by the user.
@@ -53,14 +47,14 @@ def question(request, topic_id):
     return HttpResponse(template.render(context, request))
 
 
-@login_required
+@login_required(login_url='login_page')
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
 
     return render(request, 'quiz/detail.html', {'question': question})
 
 
-@login_required
+@login_required(login_url='login_page')
 def answer(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     selected_choice = question.choice_set.get(pk=request.POST['choice'])
@@ -80,7 +74,7 @@ def answer(request, question_id):
         })
 
 
-@login_required
+@login_required(login_url='login_page')
 def out_of_questions(request):
     topic_list = Topic.objects.order_by('topic_text')
     template = loader.get_template('quiz/out_of_questions.html')
@@ -90,29 +84,3 @@ def out_of_questions(request):
     }
 
     return HttpResponse(template.render(context, request))
-
-
-def register(request):
-    context = RequestContext(request)
-    print context
-    registered = False
-    if request.method == 'POST':
-        u_f = UserForm(data=request.POST)
-        p_f = UserProfileForm(data=request.POST)
-        if u_f.is_valid() and p_f.is_valid():
-            user = u_f.save()
-            pw = user.password
-            user.set_password(pw)
-            user.save()
-            profile = p_f.save(commit=False)
-            profile.user = user
-            profile.save()
-            registered = True
-        else:
-            print u_f.errors, p_f.errors
-    else:
-        u_f = UserForm()
-        p_f = UserProfileForm()
-
-    return render_to_response('quiz/register.html', {'u_f': u_f, 'p_f': p_f, 'registered': registered},
-                              context)
