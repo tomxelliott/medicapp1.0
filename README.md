@@ -48,7 +48,7 @@ Automated tests are currently being generated for this project.
 
 ## Deployment
 
-This application has been deployed on Amazon Web Services using Elastic Beanstalk as well as Heroku, however there are other options out there including Heroku which I also hold in very high regard. Scripts have been setup to enable automatic deployment to Heroku, however the structure of the project needs to be tweaked slightly before the applciation can run seamlessly on Heroku... watch this space.
+This application has been deployed on Amazon Web Services using Elastic Beanstalk as well as Heroku, however there are other options out there including Heroku which I also hold in very high regard. Can now be automatically deployed to Heroku using a Postgres backend database server to replace SQLite which is used in development.
 
 ## Continuous integration
 
@@ -76,4 +76,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Thanks to the creators and maintainers of both Django & Python for excellent documentation that made creating this project far more manageable. 
+* Thanks to the creators of Twemoji which helped give some character to the Application and make up for my minimal front end design skills :D.
 * Thanks to my sister for the inspiration behind this project.
