@@ -8,7 +8,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 SECRET_KEY = 'x-1a=f#00b&jlo@@h=81&vusv(f!jwjz_!k*jlqz+3fpjy)p++'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Application definition
 INSTALLED_APPS = (
