@@ -18,8 +18,9 @@
         <input type="submit" name="submit" value="submit" />
         </form>
         <br>
-        Not got an account?
+        Forgotten your password? (<a href="{% url 'password_reset' %}">Reset it here</a>)
         <br>
-        <a href="{% url 'quiz:register' %}">Register</a>
+        Not got an account? (<a href="{% url 'quiz:register' %}">Register</a>)
+
 </div>
 {% endblock %}

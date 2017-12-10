@@ -8,13 +8,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 SECRET_KEY = 'x-1a=f#00b&jlo@@h=81&vusv(f!jwjz_!k*jlqz+3fpjy)p++'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Application definition
 INSTALLED_APPS = (
+    'django.contrib.auth',
     'quiz.apps.QuizConfig',
     'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -49,7 +49,6 @@ LOGIN_URL = '/quiz/login'
 LOGIN_REDIRECT_URL = '/quiz/login'
 #CSRF_COOKIE_SECURE = True
 CSRF_FAILURE_VIEW = 'quiz.views.core_views.csrf_failure'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 TEMPLATES = [
     {
@@ -114,3 +113,10 @@ STATIC_URL = '/static/'
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'medicapp.sudo@gmail.com'
+EMAIL_HOST_PASSWORD = 'MedicApp2017'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'MedicApp Team <medicapp.sudo@gmail.com>'

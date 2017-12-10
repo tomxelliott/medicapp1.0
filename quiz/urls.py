@@ -1,4 +1,5 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
+# from django.contrib.auth import views as auth_views
 
 from views import quiz_views
 from views import core_views
@@ -17,4 +18,6 @@ urlpatterns = [
     url(r'^register/$', core_views.register, name='register'),
     url(r'^profile/(?P<user_id>[0-9]+)/$', core_views.user_profile, name='profile'),
     url(r'^permission_denied/$', core_views.permission_denied, name='permission_denied'),
+
+    # url('^', include('django.contrib.auth.urls')),
 ]
