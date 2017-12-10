@@ -62,8 +62,9 @@ def out_of_questions(request):
 
 
 def about_medicapp(request):
-    return HttpResponseRedirect('/quiz/about_us/')
-
+    template = loader.get_template('quiz/about_us.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
 
 def faq(request):
     template = loader.get_template('quiz/faq.html')

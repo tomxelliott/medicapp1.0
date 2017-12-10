@@ -3,10 +3,15 @@
 <div id="container">
     {% if user.is_authenticated %}
     <h1>
-        Welcome {{ user.username }}! <i class="twa twa-1x twa-hatching-chick"></i>
+        Welcome {{ user.username }}
+        <br>
+        <i class="twa twa-1x twa-hatching-chick"></i>
+        <br>
+        Choose your Topic!
     </h1>
+    {% else %}
+    <h1>Topics</h1>
     {% endif %}
-<h1>Topics</h1>
 {% if topic_list %}
     <ul>
     {% for topic in topic_list %}
