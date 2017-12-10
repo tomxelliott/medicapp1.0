@@ -49,7 +49,7 @@ LOGIN_URL = '/quiz/login'
 LOGIN_REDIRECT_URL = '/quiz/login'
 #CSRF_COOKIE_SECURE = True
 CSRF_FAILURE_VIEW = 'quiz.views.core_views.csrf_failure'
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'    
 
 TEMPLATES = [
     {
