@@ -2,7 +2,7 @@
 {% block content %}
 {% if registered %}
 <div id="container">
-    <a href="/quiz/index.html">MedicApp</a> says: thank you for registering.
+    <a href="{% url 'quiz:index' ß%}">MedicApp</a> says: thank you for registering.
 </div>
 {% else %}
 <div id="container">
@@ -10,7 +10,6 @@
     <form id="user_form" method="post" action="{% url 'quiz:register' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ u_f.as_p }}
-        {{ p_f.as_p }}
         <input type="submit" name="submit" value="submit" />
     </form>
 </div>
