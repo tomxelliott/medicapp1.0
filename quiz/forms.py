@@ -30,3 +30,13 @@ class UserProfileForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)
         self.fields["dob"] = forms.DateField()
+
+
+class EditUserProfileForm(forms.Form):
+    class Meta:
+        model = UserProfile
+        fields = ["dob"]
+
+    def __init__(self):
+        super(EditUserProfileForm, self).__init__(*args, **kwargs)
+        self.fields["dob"] = forms.DateField()

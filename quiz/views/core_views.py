@@ -6,7 +6,8 @@ from django.template import loader, RequestContext
 from django.template.context_processors import csrf
 from django.views.decorators.csrf import ensure_csrf_cookie
 
-from quiz.forms import UserForm, UserProfileForm
+from quiz.models import UserProfile
+from quiz.forms import UserForm, UserProfileForm, EditUserProfileForm
 
 
 @ensure_csrf_cookie
@@ -34,6 +35,22 @@ def user_profile(request, user_id):
     template = loader.get_template('quiz/profile.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+
+@ensure_csrf_cookie
+def edit_user_profile(request, user_id):
+    u = UserProfile.objects.filter(id=user_id)
+    edit_uf = EditUserProfileForm()
+
+    template = loader.get_template('quiz/edit_profile')
+    context = {"user": u, "edit_uf": edit_uf}
+    return HttpResponse(template.render(context, request))
+
+
+@ensure_csrf_cookie
+def save_user_profile(request, user_id):
+    u = UserProfile.objects.filter(id=user_id)
+
 
 
 @login_required
