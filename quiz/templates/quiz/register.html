@@ -15,7 +15,6 @@
     <form id="user_form" method="post" action="{% url 'quiz:register' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{u_f.as_p}}
-        {{p_f.as_p}}
         <input type="submit" name="submit" value="submit" />
     </form>
 </div>
