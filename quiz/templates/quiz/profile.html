@@ -2,5 +2,10 @@
 {% block content %}
 <div id="container">
 <h1>{{user.username}}</h1>
+     DOB: {{user.dob|date:"d/m/y"}}
+     <br>
+     Date Joined: {{user.date_joined|date:"d/m/y"}}
+     <br>
+     Total Score: {{user.total_score}}
 </div>
 {% endblock %}

@@ -36,6 +36,21 @@ def user_profile(request, user_id):
     return HttpResponse(template.render(context, request))
 
 
+@ensure_csrf_cookie
+def edit_user_profile(request, user_id):
+    u = UserProfile.objects.filter(id=user_id)
+    edit_uf = EditUserProfileForm()
+
+    template = loader.get_template('quiz/edit_profile')
+    context = {"user": u, "edit_uf": edit_uf}
+    return HttpResponse(template.render(context, request))
+
+
+@ensure_csrf_cookie
+def save_user_profile(request, user_id):
+    u = UserProfile.objects.filter(id=user_id)
+
+
 @login_required
 def user_logout(request):
     context = RequestContext(request)
@@ -52,7 +67,9 @@ def register(request):
         u_f = UserForm(data=request.POST)
         if u_f.is_valid():
             user = u_f.save()
+            unicode(user)
             pw = user.password
+            unicode(pw)
             user.set_password(pw)
             user.save()
             registered = True

@@ -10,6 +10,17 @@
     <link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
     <!-- Emoji styles... -->
     <link rel="stylesheet" href="{% static 'quiz/twemoji-awesome.css' %}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!--<script>-->
+          <!--$( function() {-->
+              <!--$( "#id_dob" ).datepicker();-->
+        <!--} );-->
+    <!--</script>-->
+    <!---->
     <style>
       body {
         padding-top: 54px;
@@ -58,11 +69,6 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="{% url 'quiz:about_us' %}">about us</a>
             </li>
-            <div class="dropdown">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href=""><img id="user-img" src=""></a>
-            </li>
-            </div>
           </ul>
         </div>
       </div>
