@@ -6,7 +6,6 @@ from datetime import datetime
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    age = models.IntegerField()
     dob = models.DateField(auto_now=False, auto_now_add=False)
     date_joined = models.DateTimeField(default=datetime.now, blank=True)
     total_score = models.IntegerField(default=0)
