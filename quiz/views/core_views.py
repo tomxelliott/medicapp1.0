@@ -6,7 +6,7 @@ from django.template import loader, RequestContext
 from django.template.context_processors import csrf
 from django.views.decorators.csrf import ensure_csrf_cookie
 
-from quiz.forms import UserForm
+from quiz.forms import UserForm, UserProfileForm
 
 
 @ensure_csrf_cookie
@@ -50,6 +50,7 @@ def register(request):
     registered = False
     if request.method == 'POST':
         u_f = UserForm(data=request.POST)
+        p_f = UserProfileForm(data=request.POST)
         if u_f.is_valid():
             user = u_f.save()
             pw = user.password
@@ -58,10 +59,17 @@ def register(request):
             registered = True
         else:
             print u_f.errors
+        if p_f.is_valid():
+            profile = p_f.save()
+            profile.save()
+            registered = True
+        else:
+            print p_f.errors
     else:
         u_f = UserForm()
+        p_f = UserProfileForm()
 
-    return render_to_response('quiz/register.html', {'u_f': u_f, 'registered': registered},
+    return render_to_response('quiz/register.html', {'u_f': u_f, 'p_f': p_f, 'registered': registered},
                               context)
 
 

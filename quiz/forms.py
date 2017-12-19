@@ -14,19 +14,19 @@ from models import User, UserProfile
 
 
 class UserForm(forms.ModelForm):
-        class Meta:
-                model = User
-                fields = ["username", "email", "password"]
+    class Meta:
+        model = User
+        fields = ["username", "email", "password"]
+        widgets = {'password': forms.PasswordInput(), }
 
 
 class UserProfileForm(forms.Form):
-        age = forms.IntegerField()
+    dob = forms.DateField(widget=forms.widgets.DateInput(format="%m/%d/%Y"))
 
-        class Meta:
-                model = UserProfile
-                fields = ["age"]
+    class Meta:
+        model = UserProfile
+        fields = ["dob"]
 
-        def __init__(self, *args, **kwargs):
-                super(UserProfileForm, self).__init__(*args, **kwargs)
-                self.fields["age"] = forms.IntegerField(min_value=1, max_value=120)
-                self.initial["email"] = 0
+    def __init__(self, *args, **kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        self.fields["dob"] = forms.DateField()
