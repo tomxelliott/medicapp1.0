@@ -81,7 +81,8 @@ def register(request):
         context = {'u_f': u_f, 'registered': registered}
         return HttpResponse(template.render(context, request))
     except UnicodeEncodeError:
-        return HttpResponseRedirect('/quiz/')
+        context = {'registered': registered}
+        return render_to_response('quiz/index.html', context)
 
 
 def permission_denied(request):
