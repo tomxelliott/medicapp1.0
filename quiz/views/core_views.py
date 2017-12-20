@@ -61,27 +61,27 @@ def user_logout(request):
 
 @ensure_csrf_cookie
 def register(request):
-    context = RequestContext(request)
-    print context
     registered = False
-    if request.method == 'POST':
-        u_f = UserForm(data=request.POST)
-        if u_f.is_valid():
-            user = u_f.save()
-            unicode(user)
-            pw = user.password
-            unicode(pw)
-            user.set_password(pw)
-            user.save()
-            registered = True
-        else:
-            print u_f.errors
-    else:
-        u_f = UserForm()
-        p_f = UserProfileForm()
+    try:
+        if request.method == 'POST':
+            u_f = UserForm(data=request.POST)
 
-    return render_to_response('quiz/register.html', {'u_f': u_f, 'registered': registered},
-                              context)
+            if u_f.is_valid():
+                user = u_f.save()
+                pw = user.password
+                user.set_password(pw)
+                user.save()
+                registered = True
+            else:
+                print u_f.errors
+        else:
+            u_f = UserForm()
+
+        template = loader.get_template('quiz/register.html')
+        context = {'u_f': u_f, 'registered': registered}
+        return HttpResponse(template.render(context, request))
+    except UnicodeEncodeError:
+        return HttpResponseRedirect('/quiz/')
 
 
 def permission_denied(request):
