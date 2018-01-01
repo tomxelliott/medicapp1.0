@@ -24,7 +24,7 @@ def user_login(request):
             else:
                 return HttpResponse("You're account is disabled.")
         else:
-            error_msg = "invalid login details " + username + " " + password
+            error_msg = "invalid login details" # + username + " " + password
             return render_to_response('quiz/login.html', {'error_msg': error_msg}, context)
     else:
         return render_to_response('quiz/login.html', {}, context)

@@ -16,6 +16,10 @@ body {
     text-align: center;
 }
 
+#container input {
+    width: 150px;
+}
+
 #question-warning {
     text-align: center;
 }
