@@ -130,4 +130,4 @@ EMAIL_PORT = config.get('email', 'PORT')
 EMAIL_HOST_USER = config.get('email', 'HOST_USER')
 EMAIL_HOST_PASSWORD = config.get('email', 'HOST_PASSWORD')
 EMAIL_USE_TLS = config.get('email', 'USE_TLS')
-DEFAULT_FROM_EMAIL = 'MedicApp Team <medicapp.sudo@gmail.com>'
+DEFAULT_FROM_EMAIL = 'MedicApp Team'
