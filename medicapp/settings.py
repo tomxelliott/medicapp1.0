@@ -1,14 +1,25 @@
 import os
+import ConfigParser
 import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = os.path.dirname(BASE_DIR)
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
+config = ConfigParser.SafeConfigParser(allow_no_value=True)
+# config.read('%s/configs/private_settings.cfg' % (BASE_DIR))
+config.read(os.path.join(ROOT_DIR, 'private_settings.cfg'))
+
+# The secret key can contain arbitrary characters.
+# SafeConfigParser can't read it properly so read the config file using RawConfigParser as well
+raw_config = ConfigParser.RawConfigParser(allow_no_value=True)
+raw_config.read(os.path.join(ROOT_DIR, 'private_settings.cfg'))
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x-1a=f#00b&jlo@@h=81&vusv(f!jwjz_!k*jlqz+3fpjy)p++'
+SECRET_KEY = raw_config.get('security', 'SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config.get('general', 'DEBUG')
 
 # Application definition
 INSTALLED_APPS = (
@@ -114,9 +125,9 @@ STATIC_URL = '/static/'
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'medicapp.sudo@gmail.com'
-EMAIL_HOST_PASSWORD = 'MedicApp2017'
-EMAIL_USE_TLS = True
+EMAIL_HOST = config.get('email', 'HOST')
+EMAIL_PORT = config.get('email', 'PORT')
+EMAIL_HOST_USER = config.get('email', 'HOST_USER')
+EMAIL_HOST_PASSWORD = config.get('email', 'HOST_PASSWORD')
+EMAIL_USE_TLS = config.get('email', 'USE_TLS')
 DEFAULT_FROM_EMAIL = 'MedicApp Team <medicapp.sudo@gmail.com>'
